@@ -439,3 +439,255 @@ h1 span {
 
 /* Indicador visual del modo repaso */
 #game-screen:has(.feedback.hidden) .question-card { }
+
+
+/* ================= PORTADA PRO ================= */
+.hero-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hero-badge {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #fff4c9;
+  color: #85651a;
+  border: 1px solid #f0dda0;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .5px;
+  box-shadow: 0 5px 12px rgba(133,101,26,.08);
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before,
+.hero-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-card::before {
+  width: 170px;
+  height: 170px;
+  background: rgba(245,168,184,.12);
+  top: -90px;
+  right: -60px;
+}
+
+.hero-card::after {
+  width: 120px;
+  height: 120px;
+  background: rgba(185,212,155,.14);
+  bottom: -65px;
+  left: -45px;
+}
+
+.hero-mascot {
+  position: relative;
+  z-index: 1;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 20px rgba(104,67,154,.12);
+}
+
+.route-title {
+  color: var(--purple);
+  font-weight: 900;
+  font-size: .88rem;
+  letter-spacing: .4px;
+  margin-top: 8px;
+}
+
+.mini-route {
+  gap: 7px;
+  margin: 14px auto 22px;
+  padding: 12px 10px;
+  max-width: 650px;
+  border-radius: 20px;
+  background: #fbf9fd;
+  border: 1px solid #eee7f1;
+}
+
+.mini-route > div {
+  min-width: 72px;
+}
+
+.mini-route > div span,
+.mini-route > div small {
+  display: block;
+}
+
+.mini-route > div span {
+  font-size: 1.55rem;
+}
+
+.mini-route > div small {
+  color: var(--muted);
+  font-size: .64rem;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+.mini-route b {
+  color: var(--pink);
+  font-size: 1rem;
+}
+
+.mission-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 auto 13px;
+  max-width: 650px;
+}
+
+.mission-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  padding: 11px 10px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #eee8df;
+}
+
+.mission-item > span {
+  font-size: 1.45rem;
+}
+
+.mission-item strong,
+.mission-item small {
+  display: block;
+}
+
+.mission-item strong {
+  color: var(--ink);
+  font-size: .78rem;
+}
+
+.mission-item small {
+  color: var(--muted);
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.start-features {
+  margin: 13px 0 20px;
+}
+
+.start-features div {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.start-features div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(76,48,103,.07);
+}
+
+.start-cta {
+  min-width: min(430px, 100%);
+  padding: 17px 28px;
+  font-size: 1.15rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  animation: ctaPulse 2.2s ease-in-out infinite;
+}
+
+.start-cta b {
+  font-size: 1.25rem;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 8px 20px rgba(104,67,154,.28); }
+  50% { box-shadow: 0 12px 28px rgba(104,67,154,.42); }
+}
+
+.how-to-play {
+  max-width: 650px;
+  margin: 17px auto 0;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border-radius: 16px;
+  background: #f8fbf3;
+  border: 1px solid #e4eed8;
+}
+
+.how-to-play > span {
+  font-size: 1.4rem;
+}
+
+.how-to-play p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.how-to-play strong {
+  color: var(--green-dark);
+}
+
+@media (max-width: 650px) {
+  .hero-card {
+    padding: 32px 18px;
+    border-radius: 26px;
+  }
+
+  .hero-top {
+    flex-direction: column;
+  }
+
+  .mission-box {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-item {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .mini-route {
+    gap: 2px;
+    padding: 10px 4px;
+  }
+
+  .mini-route > div {
+    min-width: 51px;
+  }
+
+  .mini-route > div span {
+    font-size: 1.3rem;
+  }
+
+  .mini-route > div small {
+    font-size: .55rem;
+  }
+
+  .mini-route b {
+    font-size: .8rem;
+  }
+
+  .start-cta {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .how-to-play {
+    align-items: flex-start;
+  }
+}
