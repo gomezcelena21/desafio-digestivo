@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Desafío Digestivo: juego educativo para aprender sobre el sistema digestivo.">
+  <title>Desafío Digestivo 🍎</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="decor decor-a">✦</div>
+  <div class="decor decor-b">♡</div>
+  <div class="decor decor-c">✦</div>
+
+  <main class="app">
+
+    <!-- ================= INICIO ================= -->
+    <section id="start-screen" class="screen active">
+      <div class="hero-card">
+        <div class="hero-mascot" aria-hidden="true">🥣</div>
+        <span class="eyebrow">TRIVIA + AVENTURA EDUCATIVA</span>
+        <h1>Desafío <span>Digestivo</span></h1>
+        <p class="lead">
+          Ayudá a una manzana 🍎 a recorrer nuestro cuerpo y descubrí
+          qué ocurre en cada parte del sistema digestivo.
+        </p>
+
+        <div class="mini-route" aria-label="Recorrido digestivo">
+          <span>🍎</span><b>→</b><span>👄</span><b>→</b><span>🥣</span><b>→</b><span>🧬</span><b>→</b><span>💧</span>
+        </div>
+
+        <div class="start-features">
+          <div><strong>🧠</strong><span>Aprendé</span><small>con explicaciones</small></div>
+          <div><strong>🎮</strong><span>Jugá</span><small>con desafíos</small></div>
+          <div><strong>🏆</strong><span>Superá</span><small>3 niveles</small></div>
+        </div>
+
+        <button id="start-btn" class="primary-btn">¡Comenzar aventura! 🚀</button>
+        <p class="microcopy">No necesitás internet ni crear una cuenta.</p>
+      </div>
+    </section>
+
+    <!-- ================= JUEGO ================= -->
+    <section id="game-screen" class="screen">
+      <header class="game-header">
+        <div class="brand">
+          <div class="brand-icon">🧠</div>
+          <div>
+            <strong>Desafío Digestivo</strong>
+            <small id="level-label">Nivel 1 · Explorador</small>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span>⭐</span><strong id="score">0</strong><small>Puntos</small>
+          </div>
+          <div class="stat">
+            <span id="lives">❤️❤️❤️</span><small>Vidas</small>
+          </div>
+          <div class="stat">
+            <span>🔥</span><strong id="streak">0</strong><small>Racha</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- Ruta visual del alimento -->
+      <div class="journey-card">
+        <div class="journey-title">
+          <span>🍎</span>
+          <strong>El viaje del alimento</strong>
+          <small id="journey-status">Comenzamos en la boca</small>
+        </div>
+        <div class="journey-track" id="journey-track">
+          <div class="journey-stop" data-organ="boca"><span>👄</span><small>Boca</small></div>
+          <i></i>
+          <div class="journey-stop" data-organ="esofago"><span>〰️</span><small>Esófago</small></div>
+          <i></i>
+          <div class="journey-stop" data-organ="estomago"><span>🥣</span><small>Estómago</small></div>
+          <i></i>
+          <div class="journey-stop" data-organ="delgado"><span>🧬</span><small>Int. delgado</small></div>
+          <i></i>
+          <div class="journey-stop" data-organ="grueso"><span>🌀</span><small>Int. grueso</small></div>
+          <i></i>
+          <div class="journey-stop" data-organ="ano"><span>🚪</span><small>Ano</small></div>
+        </div>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-info">
+          <span id="question-counter">Pregunta 1 de 8</span>
+          <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar"><div id="progress-fill"></div></div>
+      </div>
+
+      <article class="question-card">
+        <div class="category-pill" id="category">PARTES DEL SISTEMA DIGESTIVO</div>
+        <div class="question-number" id="question-number">01</div>
+        <h2 id="question-text">Pregunta...</h2>
+        <div id="answers" class="answers"></div>
+
+        <div id="feedback" class="feedback hidden" aria-live="polite">
+          <div class="feedback-head">
+            <span id="feedback-icon">🎉</span>
+            <div>
+              <div class="feedback-title" id="feedback-title"></div>
+              <div class="points-pop" id="points-pop"></div>
+            </div>
+          </div>
+          <p id="feedback-text"></p>
+
+          <div id="learning-box" class="learning-box">
+            <div class="learning-illustration" id="learning-illustration">🧠</div>
+            <div>
+              <strong id="learning-title">¿Qué aprendimos?</strong>
+              <p id="learning-detail"></p>
+            </div>
+          </div>
+
+          <button id="next-btn" class="next-btn">Siguiente ➜</button>
+        </div>
+      </article>
+
+      <div id="achievement-toast" class="achievement-toast hidden" aria-live="polite"></div>
+
+      <div class="tip-card">
+        <span>💡</span>
+        <p><strong>Recordá:</strong> comer variado, beber agua, masticar bien y hacer actividad física ayuda a cuidar nuestro sistema digestivo.</p>
+      </div>
+    </section>
+
+    <!-- ================= MINIJUEGO ALIMENTOS ================= -->
+    <section id="food-screen" class="screen">
+      <div class="mini-game-card">
+        <div class="mini-game-icon">🥕</div>
+        <span class="eyebrow">DESAFÍO EXTRA</span>
+        <h2>¿Dónde va este alimento?</h2>
+        <p>Elegí la función que mejor representa a este alimento.</p>
+
+        <div class="food-display">
+          <div id="food-emoji" class="food-emoji">🍎</div>
+          <strong id="food-name">Manzana</strong>
+        </div>
+
+        <div class="food-options">
+          <button class="food-option" data-type="energeticos">
+            <span>⚡</span><strong>Energéticos</strong>
+            <small>Dan energía para jugar, estudiar y crecer.</small>
+          </button>
+          <button class="food-option" data-type="constructores">
+            <span>💪</span><strong>Constructores</strong>
+            <small>Ayudan a formar y reparar nuestro cuerpo.</small>
+          </button>
+          <button class="food-option" data-type="reguladores">
+            <span>🥦</span><strong>Reguladores</strong>
+            <small>Protegen nuestro organismo y ayudan a prevenir enfermedades.</small>
+          </button>
+        </div>
+
+        <div id="food-feedback" class="food-feedback hidden"></div>
+        <button id="food-next-btn" class="next-btn hidden">Continuar ➜</button>
+      </div>
+    </section>
+
+    <!-- ================= CURIOSIDAD ================= -->
+    <section id="fact-screen" class="screen">
+      <div class="fact-card">
+        <div class="fact-glow">💡</div>
+        <span class="eyebrow">¡CURIOSIDAD DESBLOQUEADA!</span>
+        <h2 id="fact-title">¿Sabías que...?</h2>
+        <div class="fact-visual" id="fact-visual">🧬</div>
+        <p id="fact-text"></p>
+        <div class="fact-points">+50 puntos ⭐</div>
+        <button id="fact-next-btn" class="primary-btn">Seguir aventura ➜</button>
+      </div>
+    </section>
+
+    <!-- ================= NIVEL ================= -->
+    <section id="level-screen" class="screen">
+      <div class="level-card">
+        <div class="level-emoji" id="level-emoji">🔎</div>
+        <span class="eyebrow">¡NIVEL COMPLETADO!</span>
+        <h2 id="level-title">Explorador Digestivo</h2>
+        <p id="level-message"></p>
+
+        <div class="level-summary">
+          <div><strong id="level-correct">0</strong><small>Correctas</small></div>
+          <div><strong id="level-earned">0</strong><small>Puntos ganados</small></div>
+          <div><strong id="level-accuracy">0%</strong><small>Precisión</small></div>
+        </div>
+
+        <div class="stars" id="level-stars">⭐ ⭐ ⭐</div>
+        <button id="continue-btn" class="primary-btn">Continuar ➜</button>
+      </div>
+    </section>
+
+    <!-- ================= RESULTADO ================= -->
+    <section id="result-screen" class="screen">
+      <div class="result-card">
+        <div class="result-trophy" id="result-trophy">🏆</div>
+        <span class="eyebrow">¡AVENTURA COMPLETADA!</span>
+        <h2 id="result-title">¡Experto Digestivo!</h2>
+        <p id="result-message"></p>
+
+        <div class="final-score">
+          <small>PUNTAJE FINAL</small>
+          <strong id="final-score">0</strong>
+          <span>puntos</span>
+        </div>
+
+        <div class="result-grid">
+          <div><span>✅</span><strong id="correct-count">0</strong><small>Correctas</small></div>
+          <div><span>❌</span><strong id="wrong-count">0</strong><small>Incorrectas</small></div>
+          <div><span>🔥</span><strong id="best-streak">0</strong><small>Mejor racha</small></div>
+        </div>
+
+        <div class="knowledge-box">
+          <h3>📚 Lo que aprendiste</h3>
+          <div class="knowledge-list">
+            <span>🫀 Partes del sistema digestivo</span>
+            <span>🔄 Etapas de la digestión</span>
+            <span>🥕 Función de los alimentos</span>
+            <span>💧 Hábitos saludables</span>
+            <span>💡 Curiosidades</span>
+          </div>
+        </div>
+
+        <div class="medal" id="medal">🥇</div>
+        <p class="final-tip" id="final-tip"></p>
+
+        <button id="restart-btn" class="primary-btn">Jugar otra vez 🔄</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confeti -->
+  <div id="confetti" class="confetti-container" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
